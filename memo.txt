@@ -1,0 +1,21 @@
+https://2te12226w.github.io/test/test.html
+
+
+
+https://（ユーザー名）.github.io/（リポジトリ名）/chino_3dtiles.html
+
+
+Settings 
+ Pagesのタブ 開くとサイトのurlが作成される。（少し時間がかかる）
+   Your site is live at https://2te12226w.github.io/test/ のような表示になる。
+ GitHub pages のbranch → main /(root) にする。
+
+General
+ 
+
+GitHub Desktopは使いやすいかも。
+
+ローカルにレポジトリのフォルダを作成
+　→そのフォルダの中にファイルを追加する
+　→Commit to main
+  → push （サーバーへアップロード）
