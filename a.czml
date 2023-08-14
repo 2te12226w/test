@@ -7,11 +7,11 @@
 	{
 		"id": "1",
 		"name": "Matsusima",
-		"description": "ここは松島です",
+		"description": "point1",
 		"position": {
 			"cartographicDegrees": [
-				141.064,
-				38.366,
+				138.9452412,
+				34.67424,
 				100
 			]
 		},

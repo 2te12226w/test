@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="jp">
 <head>
-<script src="https://cesium.com/downloads/cesiumjs/releases/1.82/Build/Cesium/Cesium.js"></script>
-<link href="https://cesium.com/downloads/cesiumjs/releases/1.82/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-
-  <link href="style.css" rel="stylesheet">
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.82/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.82/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    
+    <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
-  <div id="cesiumContainer"></div>
-  <script>
- // // Get your token from https://cesium.com/ion/tokens
- // // A. トークンを設定
- // Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2UyMjcwOS00MDY1LTQxYjEtYjZjMy00YTU0ZTg5MmViYWQiLCJpZCI6ODAzMDYsImlhdCI6MTY0Mjc0ODI2MX0.dkwAL1CcljUV7NA7fDbhXXnmyZQU_c-G5zRx8PtEcxE';
- // // B. terrainProviderを設定
- // const viewer = new Cesium.Viewer('cesiumContainer', {
- //   terrainProvider: new Cesium.CesiumTerrainProvider({
- //       url: Cesium.IonResource.fromAssetId(770371)
- //   })
- // }
- // );
+    <div id="cesiumContainer"></div>
+    <script>
+        // PLATEAU-Terrain streaming
+        // https://github.com/Project-PLATEAU/plateau-streaming-tutorial/blob/main/terrain/plateau-terrain-streaming.md
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2UyMjcwOS00MDY1LTQxYjEtYjZjMy00YTU0ZTg5MmViYWQiLCJpZCI6ODAzMDYsImlhdCI6MTY0Mjc0ODI2MX0.dkwAL1CcljUV7NA7fDbhXXnmyZQU_c-G5zRx8PtEcxE';
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+            terrainProvider: new Cesium.CesiumTerrainProvider({
+                url: Cesium.IonResource.fromAssetId(770371)
+            })
+        });
+
+        // Add 3d buildings
+        // https://github.com/Project-PLATEAU/plateau-streaming-tutorial/blob/main/3d-tiles/plateau-3dtiles-streaming.md
+        var your_3d_tiles =viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
+            url : 'https://assets.cms.plateau.reearth.io/assets/5a/90c73f-cab8-43f1-b4f1-70244fdb4f23/22219_shimoda-shi_2022_3dtiles_op_bldg_lod1/tileset.json'
+        }));
+
+      // KML
+         var file_kml = "./test.kml" ;
+         viewer.dataSources.add(Cesium.KmlDataSource.load(file_kml,options));
 
 
-    //①建物モデルの追加
-    var your_3d_tiles =viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
-      url : 'https://assets.cms.plateau.reearth.io/assets/5a/90c73f-cab8-43f1-b4f1-70244fdb4f23/22219_shimoda-shi_2022_3dtiles_op_bldg_lod1/tileset.json'
-    }));
+    //  var file_czml = "./c.czml" ;
+    //  viewer.dataSources.add(Cesium.CzmlDataSource.loadUrl("./c.czml"));
+    //viewer.dataSources.add(Cesium.CzmlDataSource.load("orbit.czml"));
 
+      //viewer.dataSources
+      //    .add(Cesium.CzmlDataSource.load('./c.czml'))
+      //    .then(function (ds) {
+      // });
 
-    // ②カメラのズーム
-    viewer.flyTo(your_3d_tiles);
-  </script>
+        // ②カメラのズーム
+        viewer.flyTo(your_3d_tiles);
+    </script>
 </body>
 </html>
