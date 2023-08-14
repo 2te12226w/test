@@ -2,6 +2,7 @@ body {
   margin: 0;
 }
 
+/* '.' means class */
 .cesium {
   position: absolute;
   left: 0;
